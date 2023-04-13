@@ -170,9 +170,13 @@ ggplot(datos, aes(x=PTS, y=Pos))+
 datoscuant<-datos%>%
 select(PTS, TRB, AST, STL, eFG., MP, Age) #Selecciona las variables y crea otro data frame
 
-describe(datoscuant) #Tabla descriptiva para las variables cuantitativas
+Tabla_descriptiva=describe(datoscuant, IQR=T) #Tabla descriptiva para las variables cuantitativas
 
-lapply(datoscuant, cv) #Calcula coeficiente de variación para cada variable cuant.
+Tabla_descriptiva<-Tabla_descriptiva%>% #Crear columna con CV (coeficiente de variación) en tabla descrptiva
+  mutate(CV=sd/mean*100) 
+
+Tabla_descriptiva
+
 
 corPlot(datoscuant, main="Diagrama de correlación")# Diagrama de correlación
 
