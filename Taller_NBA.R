@@ -26,7 +26,7 @@ ggplot(datos, aes(x=reorder(Pos, Pos, function(x)-length(x))))+
 describe(datos)
 describeBy(datos~Pos)
 
-
+summary(datos)
 write.table(lapply(datos, mean), file = "tablamedias.txt", sep = ",", quote = FALSE,row.names=F)
 
 
@@ -146,25 +146,25 @@ cv(datos$STL)
 ggplot(datos, aes(x=eFG., y=Pos))+
   geom_boxplot(fill=rainbow(8))+
   ggtitle("Diagrama de caja para tiros de campo efectivo según posición")+
-  labs(y="Tiros de campo efectivos")+
+  labs(y="Posición")+
   coord_flip()+theme(plot.title = element_text(hjust=0.5))
 
 ggplot(datos, aes(x=STL, y=Pos))+
   geom_boxplot(fill=rainbow(8))+
-  ggtitle("Diagrama de caja para robos de balon según posición")+
-  labs(y="Robos de balon")+
+  ggtitle("Diagrama de caja para robos de balón según posición")+
+  labs(y="Posición")+
   coord_flip()+theme(plot.title = element_text(hjust=0.5))
 
 ggplot(datos, aes(x=TRB, y=Pos))+
   geom_boxplot(fill=rainbow(8))+
   ggtitle("Diagrama de caja para rebotes según posición")+
-  labs(y="Rebotes")+
+  labs(y="Posición")+
   coord_flip()+theme(plot.title = element_text(hjust=0.5))
 
 ggplot(datos, aes(x=PTS, y=Pos))+
   geom_boxplot(fill=rainbow(8))+
   ggtitle("Diagrama de caja para puntos anotados según posición")+
-  labs(y="Tiros de campo efectivos")+
+  labs(y="Posición")+
   coord_flip()+theme(plot.title = element_text(hjust=0.5))
 
 datoscuant<-datos%>%
@@ -177,10 +177,4 @@ Tabla_descriptiva<-Tabla_descriptiva%>% #Crear columna con CV (coeficiente de va
 
 Tabla_descriptiva
 
-
 corPlot(datoscuant, main="Diagrama de correlación")# Diagrama de correlación
-
-ggplot(datoscuant, aes(x=PTS, y=AST))+
-  geom_point(fill="blue")+
-  ggtitle("Diagrama de correlación puntos y asistencias")+
-  labs(x="Puntos anotados", y="Asistencias")
